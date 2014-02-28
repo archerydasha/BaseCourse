@@ -1,3 +1,5 @@
+package com.basecourse.actions;
+
 import com.google.inject.Inject;
 
 /**
@@ -12,6 +14,6 @@ public class ParseJsonAction extends Action {
     }
 
     public void yield() {
-        System.out.println("ParseJsonAction was instantiated");
+        System.out.println("com.basecourse.actions.ParseJsonAction was instantiated");
     }
 }

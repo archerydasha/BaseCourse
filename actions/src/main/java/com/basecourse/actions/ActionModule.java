@@ -1,3 +1,5 @@
+package com.basecourse.actions;
+
 import com.google.inject.AbstractModule;
 import com.google.inject.multibindings.Multibinder;
 

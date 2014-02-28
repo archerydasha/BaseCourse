@@ -1,4 +1,4 @@
-/**
+package com.basecourse.actions; /**
  * Created by dshcherbyna on 26.02.14.
  */
 
@@ -14,6 +14,6 @@ public class ParseXMLAction extends Action{
 
     @Override
     void yield() {
-        System.out.println("ParseXMLAction was instantiated");
+        System.out.println("com.basecourse.actions.ParseXMLAction was instantiated");
     }
 }
