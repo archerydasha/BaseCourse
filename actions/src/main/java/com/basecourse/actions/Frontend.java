@@ -22,9 +22,10 @@ public class Frontend {
     public void processAction(Properties properties) {
         Action action = findNeededAction(properties.getEventType());
         action.yield();
+        action.processEvent(properties);
     }
 
-    private Action findNeededAction(FIMEventType eventType) {
+    private Action findNeededAction(EventType eventType) {
         for (Action action : actions) {
             if (action.getEventType() == eventType) {
                 return action;

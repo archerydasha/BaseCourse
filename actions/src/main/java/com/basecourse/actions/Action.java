@@ -4,12 +4,14 @@ package com.basecourse.actions;
  * Created by dshcherbyna on 26.02.14.
  */
 public abstract class Action {
-    protected FIMEventType eventType;
+    protected EventType eventType;
  //   protected FIMService service;
 
     abstract void yield();
 
-    FIMEventType getEventType() {
+    abstract void processEvent(Properties properties);
+
+    EventType getEventType() {
         return eventType;
     }
 }

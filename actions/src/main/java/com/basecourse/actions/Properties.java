@@ -5,13 +5,21 @@ package com.basecourse.actions;
  */
 public class Properties {
 
-    private final FIMEventType eventType;
+    private final EventType eventType;
 
-    public Properties(FIMEventType eventType){
+    private final String feedFileName;
+
+    public Properties(EventType eventType, String feedFileName) {
         this.eventType = eventType;
+        this.feedFileName = feedFileName;
     }
 
-    public FIMEventType getEventType() {
+    public EventType getEventType() {
         return eventType;
     }
+
+    public String getFeedFileName() {
+        return feedFileName;
+    }
+
 }

@@ -10,7 +10,7 @@ public class ActionModule extends AbstractModule {
     @Override
     protected void configure() {
         Multibinder<Action> multibinder = Multibinder.newSetBinder(binder(), Action.class);
-        multibinder.addBinding().to(ParseJsonAction.class);
-        multibinder.addBinding().to(ParseXMLAction.class);
+        multibinder.addBinding().to(FakeAction.class);
+        multibinder.addBinding().to(FeedNotificatonAction.class);
     }
 }
