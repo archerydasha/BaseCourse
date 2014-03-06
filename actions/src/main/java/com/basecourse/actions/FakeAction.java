@@ -1,20 +1,23 @@
 package com.basecourse.actions;
 
+import com.basecourse.services.FakeService;
 import com.google.inject.Inject;
 
 /**
  * Created by dshcherbyna on 26.02.14.
  */
 public class FakeAction extends Action {
+    private FakeService service;
 
     @Inject
-    public FakeAction() {
+    public FakeAction(FakeService service) {
+        this.service = service;
         eventType = EventType.FAKE_EVENT;
-//        this.service = service;
+        System.out.println("com.basecourse.actions.FakeAction was instantiated with Guice");
     }
 
     public void yield() {
-        System.out.println("com.basecourse.actions.FakeAction was instantiated");
+        System.out.println("com.basecourse.actions.FakeAction was instantiated with Guice");
     }
 
     @Override

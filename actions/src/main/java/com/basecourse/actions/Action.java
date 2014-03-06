@@ -5,13 +5,10 @@ package com.basecourse.actions;
  */
 public abstract class Action {
     protected EventType eventType;
- //   protected FIMService service;
-
-    abstract void yield();
 
     abstract void processEvent(Properties properties);
 
-    EventType getEventType() {
+    public EventType getEventType() {
         return eventType;
     }
 }

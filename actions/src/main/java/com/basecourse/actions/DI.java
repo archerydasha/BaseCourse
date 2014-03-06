@@ -1,6 +1,7 @@
 package com.basecourse.actions;
 
 
+import com.basecourse.services.ServiceModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -15,7 +16,7 @@ public class DI {
 
     public static Injector getInjector() {
         if (injector == null) {
-            injector = Guice.createInjector(new ActionModule());
+            injector = Guice.createInjector(new ActionModule(), new ServiceModule());
         }
         return injector;
     }

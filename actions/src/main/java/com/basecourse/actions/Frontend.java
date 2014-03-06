@@ -21,7 +21,6 @@ public class Frontend {
 
     public void processAction(Properties properties) {
         Action action = findNeededAction(properties.getEventType());
-        action.yield();
         action.processEvent(properties);
     }
 

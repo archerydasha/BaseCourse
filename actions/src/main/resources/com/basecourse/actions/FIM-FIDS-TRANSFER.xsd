@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:FIM-BASE="FIM-BASE"
+	 xmlns:FIM-FIDS-TRANSFER="FIM-FIDS-TRANSFER"
+	 targetNamespace="FIM-FIDS-TRANSFER"
+	 elementFormDefault="unqualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="FIM-BASE" schemaLocation="Meta xsd/FIM-BASE.xsd"/>
+	<xs:element name="FDSDataContainer" type="FIM-BASE:DataContainer">
+		<xs:annotation>
+			<xs:documentation>Root element.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

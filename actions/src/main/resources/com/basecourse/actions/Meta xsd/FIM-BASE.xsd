@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:FIM-BASE="FIM-BASE"
+	 targetNamespace="FIM-BASE"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:complexType name="DataContainer">
+		<xs:annotation>
+			<xs:documentation>Each data class provides logical and physical meta-data for the corresponding data entity in FDS specification. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="sourceId" type="FIM-BASE:sourceIdType"/>
+			<xs:element name="cobDate" type="xs:date"/>
+			<xs:element name="publishedTimeStamp" type="xs:dateTime"/>
+			<xs:element name="containerType">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="64"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="containerVersion" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dataClass" type="FIM-BASE:DataClass" maxOccurs="unbounded"/>
+			<xs:element name="location" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="64"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="legalEntity" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="64"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="containerFile" type="FIM-BASE:ContainerFile"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataClass">
+		<xs:sequence>
+			<xs:element name="DataType" type="FIM-BASE:dataTypes"/>
+			<xs:element name="SourceFeedId">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="38"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="RecordCount" type="xs:integer"/>
+			<xs:element name="ContainerFile" type="FIM-BASE:File"/>
+			<xs:element name="UE" type="FIM-BASE:userExtension" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="encryptionMethods">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="3DES"/>
+			<xs:enumeration value="BLOWFISH"/>
+			<xs:enumeration value="IDEA"/>
+			<xs:enumeration value="RC4"/>
+			<xs:enumeration value="RSA"/>
+			<xs:enumeration value="NONE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="dataTypes">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Balance"/>
+			<xs:enumeration value="Collateral"/>
+			<xs:enumeration value="Contract"/>
+			<xs:enumeration value="Facility"/>
+			<xs:enumeration value="Party"/>
+			<xs:enumeration value="Instrument"/>
+			<xs:enumeration value="Movements"/>
+			<xs:enumeration value="Instrument Cross Reference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="delimiterTypes">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=","/>
+			<xs:enumeration value=" "/>
+			<xs:enumeration value="Tab"/>
+			<xs:enumeration value="|"/>
+			<xs:enumeration value="."/>
+			<xs:enumeration value="n/a"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="userExtension" abstract="true">
+		<xs:annotation>
+			<xs:documentation>For further extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="File">
+		<xs:sequence>
+			<xs:element name="checksumAlgorithm" type="FIM-BASE:checksumAlgorithms"/>
+			<xs:element name="checksum">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="512"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="encriptionMethod" type="FIM-BASE:encryptionMethods"/>
+			<xs:element name="compression" type="FIM-BASE:compressionMethods"/>
+			<xs:element name="relativeURI">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="1000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataFile">
+		<xs:complexContent>
+			<xs:extension base="FIM-BASE:File">
+				<xs:sequence>
+					<xs:element name="delimiter" type="FIM-BASE:delimiterTypes" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ContainerFile">
+		<xs:complexContent>
+			<xs:extension base="FIM-BASE:File"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="checksumAlgorithms">
+		<xs:annotation>
+			<xs:documentation>Check sum algorithm. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MD5"/>
+			<xs:enumeration value="CRC32"/>
+			<xs:enumeration value="SHA1"/>
+			<xs:enumeration value="SHA256"/>
+			<xs:enumeration value="SHA384"/>
+			<xs:enumeration value="SHA512"/>
+			<xs:enumeration value="NONE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="compressionMethods">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="zip"/>
+			<xs:enumeration value="tar.gz"/>
+			<xs:enumeration value="gz"/>
+			<xs:enumeration value="NONE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="sourceIdType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="128"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

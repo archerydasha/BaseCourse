@@ -1,5 +1,8 @@
 package com.basecourse.actions;
 
+import com.google.common.base.Preconditions;
+import com.google.common.base.Throwables;
+
 import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -12,6 +15,7 @@ public class ZipUnpacker {
     }
 
     public static void unpackZipFile(InputStream zipStream, File rootDirectory) {
+        Preconditions.checkNotNull(rootDirectory);
         String rootDirectoryName = checkRootDirectory(rootDirectory);
 
         ZipInputStream feedZipStream = null;
@@ -23,18 +27,10 @@ public class ZipUnpacker {
                 unpackEntry(destinationFile, feedZipStream);
                 feedZipStream.closeEntry();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (feedZipStream != null) {
-                try {
-                    feedZipStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            feedZipStream.close();
+        } catch (Exception e) {
+            throw Throwables.propagate(e);
         }
-
     }
 
     private static String checkRootDirectory(File rootDirectory) {
@@ -49,31 +45,17 @@ public class ZipUnpacker {
         return rootDirectory.getPath();
     }
 
-    private static void unpackEntry(File destinationFile, ZipInputStream feedZipStream) {
-//        createParentFolder(destinationFile);
+    private static void unpackEntry(File destinationFile, ZipInputStream feedZipStream) throws IOException {
         BufferedOutputStream outputStream = null;
         try {
             outputStream = new BufferedOutputStream(new FileOutputStream(destinationFile));
             for (int c = feedZipStream.read(); c != -1; c = feedZipStream.read()) {
                 outputStream.write(c);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         } finally {
             if (outputStream != null) {
-                try {
-                    outputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                outputStream.close();
             }
         }
     }
-
-/*
-        private static void createParentFolder(File destinationFile) {
-        File parent = new File(destinationFile.getParent());
-        parent.mkdirs();
-    }
-*/
 }

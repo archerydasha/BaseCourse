@@ -1,47 +1,45 @@
-package com.basecourse.actions; /**
+package com.basecourse.actions;
+/**
  * Created by dshcherbyna on 26.02.14.
  */
 
 import com.basecourse.actions.jaxb.DataClass;
 import com.basecourse.actions.jaxb.DataContainer;
+import com.basecourse.services.FeedService;
 import com.google.common.base.Throwables;
 import com.google.common.io.Files;
 import com.google.inject.Inject;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.util.ArrayList;
 
 public class FeedNotificatonAction extends Action {
+    private FeedService service;
 
     @Inject
-    public FeedNotificatonAction() {
+    public FeedNotificatonAction(FeedService service) {
         eventType = EventType.FEED_EVENT;
-//        this.service = service;
-    }
-
-    @Override
-    void yield() {
-        System.out.println("com.basecourse.actions.FeedNotificatonAction was instantiated");
+        this.service = service;
+        System.out.println("com.basecourse.services.FeedNotificationAction was instantiated with Guice");
     }
 
     @Override
     void processEvent(Properties properties) {
-
         File tempDirectory = Files.createTempDir();
         InputStream feedInputStream = this.getClass().getResourceAsStream(properties.getFeedFileName());
         ZipUnpacker.unpackZipFile(feedInputStream, tempDirectory);
 
         DataContainer container = getDataContainer(tempDirectory, "meta.xml");
 
-        if(!checkMissingFiles(tempDirectory, container)){
+        if (!checkMissingFiles(tempDirectory, container)) {
             return;
         }
 
+        service.createFeed(properties.getFeedFileName(), container.getContainerType());
     }
 
     private DataContainer getDataContainer(File tempDirectory, String filename) {

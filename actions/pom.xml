@@ -24,12 +24,11 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
-<!--        <dependency>
+        <dependency>
             <groupId>BaseCourse</groupId>
             <artifactId>services</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
--->
     </dependencies>
 
     <build>
@@ -41,7 +40,7 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
-        <plugins>
+       <plugins>
             <plugin>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-xjc-plugin</artifactId>

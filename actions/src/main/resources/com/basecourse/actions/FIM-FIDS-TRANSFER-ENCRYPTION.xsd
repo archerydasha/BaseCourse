@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:FIM-BASE="FIM-BASE"
+	 xmlns:FIM-FIDS-TRANSFER-ENCRYPTION="FIM-FIDS-TRANSFER-ENCRYPTION"
+	 targetNamespace="FIM-FIDS-TRANSFER-ENCRYPTION"
+	 elementFormDefault="unqualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="FIM-BASE" schemaLocation="Meta xsd/FIM-BASE.xsd"/>
+	<xs:element name="FDSEnciptedContainer" type="FIM-FIDS-TRANSFER-ENCRYPTION:encryptedContainer">
+		<xs:annotation>
+			<xs:documentation>Root element.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="encryptedContainer">
+		<xs:sequence>
+			<xs:element name="sourceId">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="128"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="encryptionMethod" type="FIM-BASE:encryptionMethods"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
