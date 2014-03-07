@@ -31,7 +31,8 @@ public class FeedNotificatonAction extends Action {
     void processEvent(Properties properties) {
         File tempDirectory = Files.createTempDir();
         InputStream feedInputStream = this.getClass().getResourceAsStream(properties.getFeedFileName());
-        ZipUnpacker.unpackZipFile(feedInputStream, tempDirectory);
+        ZipUnpacker unpacker = new ZipUnpacker();
+        unpacker.unpackZipFile(feedInputStream, tempDirectory);
 
         DataContainer container = getDataContainer(tempDirectory, "meta.xml");
 

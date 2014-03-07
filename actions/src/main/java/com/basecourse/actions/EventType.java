@@ -5,5 +5,6 @@ package com.basecourse.actions;
  */
 public enum EventType {
     FEED_EVENT,
-    FAKE_EVENT
+    FAKE_EVENT;
+
 }
