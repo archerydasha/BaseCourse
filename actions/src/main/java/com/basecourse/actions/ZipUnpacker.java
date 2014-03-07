@@ -46,16 +46,7 @@ public class ZipUnpacker {
     }
 
     private void unpackEntry(File destinationFile, ZipInputStream feedZipStream) throws IOException {
-        BufferedOutputStream outputStream = null;
-        try {
-            outputStream = new BufferedOutputStream(new FileOutputStream(destinationFile));
-            for (int c = feedZipStream.read(); c != -1; c = feedZipStream.read()) {
-                outputStream.write(c);
-            }
-        } finally {
-            if (outputStream != null) {
-                outputStream.close();
-            }
-        }
+        FileOutputStream fileOutputStream = new FileOutputStream(destinationFile);
+        ByteStreams.copy(feedZipStream, fileOutputStream);
     }
 }
