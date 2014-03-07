@@ -7,6 +7,6 @@ public class StartPoint {
 
     public static void main(String[] args) {
         Frontend frontend = new Frontend();
-        frontend.processAction("FEED_EVENT, FIM_FIM-FR_0877_76833-1_57_20140527_20140120070615.zip");
+        frontend.processAction("eventType=FEED_EVENT, fileName=FIM_FIM-FR_0877_76833-1_57_20140527_20140120070615.zip");
     }
 }
