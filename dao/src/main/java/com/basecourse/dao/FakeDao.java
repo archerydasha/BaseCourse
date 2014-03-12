@@ -8,7 +8,8 @@ import org.apache.commons.logging.LogFactory;
  */
 public class FakeDao implements AbstractFakeDao {
     private static Log LOG = LogFactory.getLog(FakeDao.class);
-    public FakeDao(){
+
+    public FakeDao() {
         LOG.info("FakeDao was instantiated with Guice");
     }
 }

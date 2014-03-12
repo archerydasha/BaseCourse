@@ -37,7 +37,7 @@ public class ZipUnpacker {
                 }
             }
         } catch (Exception e) {
-            LOG.error("Unpacking failed.",  e);
+            LOG.error("Unpacking failed.", e);
             Throwables.propagate(e);
         }
         LOG.info("Unpacking finished");

@@ -19,10 +19,6 @@ public class FakeAction extends Action {
         LOG.info("FakeAction was instantiated with Guice");
     }
 
-    public void yield() {
-        System.out.println("com.basecourse.actions.FakeAction was instantiated with Guice");
-    }
-
     @Override
     void processEvent(Properties properties) {
         //just a dummy here

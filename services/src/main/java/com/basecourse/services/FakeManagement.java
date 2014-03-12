@@ -11,8 +11,9 @@ import org.apache.commons.logging.LogFactory;
 public class FakeManagement implements FakeService {
     private AbstractFakeDao dao;
     private static Log LOG = LogFactory.getLog(FakeManagement.class);
+
     @Inject
-    public FakeManagement(AbstractFakeDao dao){
+    public FakeManagement(AbstractFakeDao dao) {
         this.dao = dao;
         LOG.info("FakeManagement was instantiated with Guice");
     }

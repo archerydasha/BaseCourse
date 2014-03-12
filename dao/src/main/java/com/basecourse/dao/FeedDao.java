@@ -13,7 +13,7 @@ public class FeedDao implements AbstractFeedDao {
     private static Log LOG = LogFactory.getLog(FeedDao.class);
 
     public FeedDao() {
-       LOG.info("FeedDao was instantiated with Guice");
+        LOG.info("FeedDao was instantiated with Guice");
     }
 
     @Override
@@ -31,7 +31,7 @@ public class FeedDao implements AbstractFeedDao {
     @Override
     public void saveFeedInstanceTechParameters(FeedInstanceTechParams parameters) {
         LOG.info("saveFeedInstanceTechParameters called");
-       System.out.println("FeedInstanceTechParams " + parameters.getContainerType() + " were saved");
+        System.out.println("FeedInstanceTechParams " + parameters.getContainerType() + " were saved");
     }
 
     @Override
