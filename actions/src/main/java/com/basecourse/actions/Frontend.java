@@ -28,13 +28,17 @@ public class Frontend {
     }
 
     public void processAction(String params) {
-        LOG.info("Frontend.processAction function called with parameter " + params);
-        String[] paramsArray = Iterables.toArray(Splitter.on(',').trimResults().split(params), String.class);
-        String eventType = getParamValue(paramsArray[0]);
-        String fileName = getParamValue(paramsArray[1]);
-        LOG.info("Properties are: " + eventType + ", " + fileName);
-        Properties properties = new Properties(EventType.valueOf(eventType), fileName);
-        processAction(properties);
+        try {
+            LOG.info("Frontend.processAction function called with parameter " + params);
+            String[] paramsArray = Iterables.toArray(Splitter.on(',').trimResults().split(params), String.class);
+            String eventType = getParamValue(paramsArray[0]);
+            String fileName = getParamValue(paramsArray[1]);
+            LOG.info("Properties are: " + eventType + ", " + fileName);
+            Properties properties = new Properties(EventType.valueOf(eventType), fileName);
+            processAction(properties);
+        } catch (Exception e) {
+            LOG.fatal("Exception happened ", e);
+        }
     }
 
     private void processAction(Properties properties) {
