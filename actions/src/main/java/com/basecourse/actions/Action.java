@@ -1,5 +1,6 @@
 package com.basecourse.actions;
 
+import org.apache.commons.logging.Log;
 /**
  * Created by dshcherbyna on 26.02.14.
  */

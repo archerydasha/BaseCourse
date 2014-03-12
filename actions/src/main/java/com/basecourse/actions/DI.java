@@ -4,6 +4,7 @@ package com.basecourse.actions;
 import com.basecourse.services.ServiceModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import org.apache.log4j.Logger;
 
 /**
  * Created by dshcherbyna on 28.02.14.

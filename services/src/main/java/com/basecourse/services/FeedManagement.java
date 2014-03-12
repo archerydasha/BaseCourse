@@ -4,23 +4,29 @@ import com.basecourse.model.FeedInstance;
 import com.basecourse.model.FeedInstanceTechParams;
 import com.google.inject.Inject;
 import com.basecourse.dao.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 
 /**
  * Created by dshcherbyna on 26.02.14.
  */
 public class FeedManagement implements FeedService {
     private AbstractFeedDao dao;
+    private static Log LOG = LogFactory.getLog(FeedManagement.class);
 
     @Inject
     public FeedManagement(AbstractFeedDao dao){
         this.dao = dao;
-        System.out.println("com.basecourse.services.FeedManagement was instantiated with Guice");
+        LOG.info("FeedManagement was instantiated with Guice");
     }
 
     @Override
     public void createFeed(String filename, String containerType) {
+        LOG.info("Creating FeedInstance and FeedInstanceTechParams");
         FeedInstance instance = new FeedInstance(filename);
-        FeedInstanceTechParams params = new FeedInstanceTechParams(containerType);//create FeedInstance
+        FeedInstanceTechParams params = new FeedInstanceTechParams(containerType);
+        LOG.info("Saving FeedInstance and FeedInstanceTechParams");
         dao.saveFeedInstance(instance);
         dao.saveFeedInstanceTechParameters(params);
     }

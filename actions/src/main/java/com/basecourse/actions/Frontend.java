@@ -20,10 +20,10 @@ public class Frontend {
     private Logger LOG = Logger.getLogger(Frontend.class);
 
     public Frontend() {
+        PropertyConfigurator.configure(Frontend.class.getResourceAsStream("/com/basecourse/actions/log4j.properties"));
         Injector injector = DI.getInjector();
         actions = injector.getInstance(Key.get(new TypeLiteral<Set<Action>>() {
         }));
-       PropertyConfigurator.configure(Frontend.class.getResourceAsStream("/com/basecourse/actions/log4j.properties"));
     }
 
     public void processAction(String params) {
@@ -38,7 +38,7 @@ public class Frontend {
 
     private void processAction(Properties properties) {
         Action action = findNeededAction(properties.getEventType());
-        LOG.info("Action to be used is: " + action.getClass());
+        LOG.info("Action to be used is: " + action);
         action.processEvent(properties);
     }
 

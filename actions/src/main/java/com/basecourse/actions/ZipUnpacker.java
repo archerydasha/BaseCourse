@@ -3,6 +3,7 @@ package com.basecourse.actions;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Throwables;
 import com.google.common.io.ByteStreams;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.util.zip.ZipEntry;
@@ -12,12 +13,17 @@ import java.util.zip.ZipInputStream;
  * Created by dshcherbyna on 03.03.14.
  */
 public class ZipUnpacker {
+    private Logger LOG = Logger.getLogger(ZipUnpacker.class);
+
     public void unpackZipFile(InputStream zipStream, File rootDirectory){
+        LOG.info("unpackZipFile called");
+        LOG.info("Checking root directory");
         Preconditions.checkNotNull(rootDirectory);
         String rootDirectoryName = checkRootDirectory(rootDirectory);
 
         ZipInputStream feedZipStream = null;
         ZipEntry entry;
+        LOG.info("Unpacking started");
         try {
             try {
                 feedZipStream = new ZipInputStream(zipStream);
@@ -31,8 +37,10 @@ public class ZipUnpacker {
                 }
             }
         } catch (Exception e) {
+            LOG.error("Unpacking failed.",  e);
             Throwables.propagate(e);
         }
+        LOG.info("Unpacking finished");
     }
 
     private String checkRootDirectory(File rootDirectory) {

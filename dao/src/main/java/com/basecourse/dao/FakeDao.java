@@ -1,10 +1,14 @@
 package com.basecourse.dao;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * Created by dshcherbyna on 06.03.14.
  */
 public class FakeDao implements AbstractFakeDao {
+    private static Log LOG = LogFactory.getLog(FakeDao.class);
     public FakeDao(){
-        System.out.println("com.basecourse.dao.FakeDao was instantiated with Guice");
+        LOG.info("FakeDao was instantiated with Guice");
     }
 }
