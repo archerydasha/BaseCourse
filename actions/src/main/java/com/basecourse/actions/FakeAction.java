@@ -20,6 +20,11 @@ public class FakeAction extends Action {
     }
 
     @Override
+    void processEvent(String propertyString) {
+        //just a dummy here
+    }
+
+    @Override
     void processEvent(Properties properties) {
         //just a dummy here
     }

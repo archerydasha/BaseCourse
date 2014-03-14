@@ -8,6 +8,8 @@ import org.apache.commons.logging.Log;
 public abstract class Action {
     protected EventType eventType;
 
+    abstract void processEvent(String propertyString);
+
     abstract void processEvent(Properties properties);
 
     public EventType getEventType() {

@@ -31,6 +31,11 @@ public class FeedNotificatonAction extends Action {
     }
 
     @Override
+    void processEvent(String propertyString) {
+
+    }
+
+    @Override
     void processEvent(Properties properties) {
         LOG.info("processEvent function called");
         File tempDirectory = Files.createTempDir();
