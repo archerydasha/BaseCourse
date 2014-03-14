@@ -8,7 +8,7 @@ import spock.lang.Specification
  */
 class ActionSpec extends Specification {
 
-     def "createFeed should be called 6 times with correct parameters"() {
+     def "createFeed should be called with correct parameters"() {
         setup:
         def service = Mock(FeedService);
         def Properties properties = new Properties("eventType=FEED_EVENT, fileName=FIM_FIM-FR_0877_76833-1_57_20140527_20140120070615_20140311.zip");
@@ -25,6 +25,5 @@ class ActionSpec extends Specification {
          'fim_0877_76833-1_20140527_col.xml' | '07dd76711e40e7270e70c525ce42e085bec094a1'
          'fim_0877_76833-1_20140527_dbp.xml' | 'cfb527d694b5862b989003ee72058c4f73dc5210'
          'fim_0877_76833-1_20140527_con.xml' | '2653066039cd99ecfde0761da6aae6446ee2bfc3'
-
      }
 }

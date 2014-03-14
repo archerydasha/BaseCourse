@@ -13,4 +13,15 @@ public class FeedInstance {
     public String getFileName() {
         return fileName;
     }
+
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (o.getClass() != FeedInstance.class) {
+            return false;
+        }
+        FeedInstance otherInstance = (FeedInstance) o;
+        return otherInstance.getFileName().equals(this.getFileName());
+    }
 }
