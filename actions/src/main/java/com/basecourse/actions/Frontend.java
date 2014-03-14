@@ -10,7 +10,8 @@ import com.google.inject.TypeLiteral;
 import javax.annotation.Nullable;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.PropertyConfigurator;
 
 /**
@@ -18,7 +19,7 @@ import org.apache.log4j.PropertyConfigurator;
  */
 public class Frontend {
     private Set<Action> actions;
-    private Logger LOG = Logger.getLogger(Frontend.class);
+    private static Log LOG = LogFactory.getLog(Frontend.class);
 
     public Frontend() {
         PropertyConfigurator.configure(Frontend.class.getResourceAsStream("/com/basecourse/actions/log4j.properties"));
