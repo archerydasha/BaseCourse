@@ -31,7 +31,7 @@ public class FeedDao implements AbstractFeedDao {
     @Override
     public void saveFeedInstanceTechParameters(FeedInstanceTechParams parameters) {
         LOG.info("saveFeedInstanceTechParameters called");
-        System.out.println("FeedInstanceTechParams " + parameters.getContainerType() + " were saved");
+        System.out.println("FeedInstanceTechParams " + parameters.getChecksum() + " were saved");
     }
 
     @Override

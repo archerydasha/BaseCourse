@@ -22,10 +22,10 @@ public class FeedManagement implements FeedService {
     }
 
     @Override
-    public void createFeed(String filename, String containerType) {
+    public void createFeed(String filename, String checksum) {
         LOG.info("Creating FeedInstance and FeedInstanceTechParams");
         FeedInstance instance = new FeedInstance(filename);
-        FeedInstanceTechParams params = new FeedInstanceTechParams(containerType);
+        FeedInstanceTechParams params = new FeedInstanceTechParams(checksum);
         LOG.info("Saving FeedInstance and FeedInstanceTechParams");
         dao.saveFeedInstance(instance);
         dao.saveFeedInstanceTechParameters(params);

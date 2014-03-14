@@ -5,5 +5,5 @@ package com.basecourse.services;
  */
 public interface FeedService {
 
-    void createFeed(String filename, String containerType);
+    void createFeed(String filename, String checksum);
 }

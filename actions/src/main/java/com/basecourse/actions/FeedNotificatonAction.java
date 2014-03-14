@@ -49,7 +49,9 @@ public class FeedNotificatonAction extends Action {
         }
 
         LOG.info("Starting feed creation");
-        service.createFeed(properties.getFeedFileName(), container.getContainerType());
+        for(DataClass dataClass : container.getDataClass()){
+            service.createFeed(dataClass.getContainerFile().getRelativeURI(), dataClass.getContainerFile().getChecksum());
+        }
     }
 
     private DataContainer getDataContainer(File tempDirectory, String filename) {
